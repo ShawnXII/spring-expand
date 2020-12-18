@@ -14,9 +14,13 @@ public class LoginLimitConfig {
     @Value("${spring.login.limit:0}")
     private Integer limit;
 
-    //Token 有效时间 单位:s
-    @Value("${spring.login.expiredTime:10}")
+    //Token 有效时间 默认一天 小于等于0  则不过期
+    @Value("${spring.login.expiredTime:43200}")
     private Long expiredTime;
+
+    //账号锁定时间 默认一天 小于等于0  则不过期(人工解锁)
+    @Value("${spring.login.lockTime:43200}")
+    private Long lockTime;
 
     // 允许输入密码错误次数 小于等于0  则不限制
     @Value("${spring.login.wrongNumber:0}")
@@ -31,6 +35,14 @@ public class LoginLimitConfig {
 
     @Value("${spring.login.rootUsername:wangxiang@2838}")
     private String rootPassword;
+
+    public Long getLockTime() {
+        return lockTime;
+    }
+
+    public void setLockTime(Long lockTime) {
+        this.lockTime = lockTime;
+    }
 
     public Integer getLimit() {
         return limit;

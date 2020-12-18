@@ -48,15 +48,6 @@ public class LoginConfigAdapter {
 
 
     /**
-     * 同一账号可以登录机器数量 默认:5
-     *
-     * @return
-     */
-    public LoginConfigAdapter limit() {
-        return limit(5);
-    }
-
-    /**
      * 设置同一账号可以登录机器数量 小于等于0 或者大于99 则不限制
      *
      * @param limit
@@ -67,17 +58,9 @@ public class LoginConfigAdapter {
         return this;
     }
 
-    /**
-     * 设置密码可以输入错误次数 默认可以输入错误次数 5次
-     *
-     * @return
-     */
-    public LoginConfigAdapter wrongNumber() {
-        return wrongNumber(5);
-    }
 
     /**
-     * 设置密码可以输入错误次数 小于等于0 则不限制错误次数
+     * 设置密码可以输入错误次数 小于等于0 或者大于99 则不限制错误次数
      *
      * @param wrongNumber
      * @return
@@ -87,6 +70,27 @@ public class LoginConfigAdapter {
         return this;
     }
 
+    /**
+     * 设置token过期时间
+     *
+     * @param expiredTime 过期时间 单位:s
+     * @return
+     */
+    public LoginConfigAdapter expiredTime(Long expiredTime) {
+        this.loginConfig.setExpiredTime(expiredTime);
+        return this;
+    }
+
+    /**
+     * 设置账号锁定时间(密码输入错误 超过次数后的锁定时间)
+     *
+     * @param lockTime 锁定时间 单位:s
+     * @return
+     */
+    public LoginConfigAdapter lockTime(Long lockTime) {
+        this.loginConfig.setLockTime(lockTime);
+        return this;
+    }
 
     /**
      * 新增管理员账号
@@ -99,6 +103,19 @@ public class LoginConfigAdapter {
         this.loginConfig.addRoot(new RootAccount(username, password));
         return this;
     }
+
+    /**
+     * 新增登录平台
+     *
+     * @param code
+     * @param name
+     * @return
+     */
+    public LoginConfigAdapter addPlatform(String code, String name) {
+
+        return this;
+    }
+
 
     @Override
     public String toString() {

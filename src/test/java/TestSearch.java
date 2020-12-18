@@ -31,7 +31,10 @@ public class TestSearch {
         Searchable searchable = Searchable.of(TestEntity.class).eq("key1", "1").or().eq("key2", "2").or().eq("name", "").and().eq("key3", "3").eq("testBEntity.name", "k2");
         List<TestEntity> list = testRepository.findAll(searchable.build().toSpecification());
         System.out.println(list);
-        LoginConfigAdapter adapter = LoginConfigAdapter.getInstance().protocol().token().end().addRoot("wx","wangxiang386");
+        LoginConfigAdapter adapter = LoginConfigAdapter.getInstance()
+                .protocol().token().end()
+                .addRoot("wx","123123")
+                .addRoot("wx","wangxiang386");
         System.out.println(adapter);
         System.out.println(SpringBeanUtils.getBean(LoginConfig.class));
     }
